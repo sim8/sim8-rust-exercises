@@ -8,3 +8,4 @@
   - `--release` optimized for prod
 - `cargo run` - above plus runs target output
 - `cargo check` - checks the code compiles
+- default registry is `crates.io`

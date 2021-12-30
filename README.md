@@ -6,3 +6,4 @@ This repo is a workbook for working through the [official rust lang book](https:
 
 - Book: https://doc.rust-lang.org/book
 - Docs: https://doc.rust-lang.org/std/index.html
+- Crates: https://crates.io/
