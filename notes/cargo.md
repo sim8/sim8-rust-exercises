@@ -3,6 +3,7 @@
 - Build system + package manager!
 - TOML - Tom's obvious minimal language
 - crates - packages in rust land
+- `cargo new some_project` - spins up project
 - `cargo build` - two guesses to what this does :)
   - also generates `cargo.lock` to track dep versions
   - `--release` optimized for prod
