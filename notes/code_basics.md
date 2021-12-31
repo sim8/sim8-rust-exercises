@@ -45,3 +45,8 @@
 
 - Defined in a curly block, using {}
   More on this later!
+
+## Slices (substring)
+
+- `&someStr[0..2];` - can omit first or last for start/end
+- String literals are slices!! They point to specific point of binary. Hence why they're immutable
