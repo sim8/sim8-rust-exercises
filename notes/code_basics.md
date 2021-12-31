@@ -33,3 +33,15 @@
     - Type declaration: `let a: [i32; 5]`
     - Can initialize all values directly if known: `let a = [3; 5];` (sets 5 values to 3)
     - Accessed via index
+
+## Functions
+
+- Hoisting is a thing
+- arg type definitions required
+- If returns something, we define with arrow + type, e.g. `fn five() -> i32 `
+- Can end in expression, which is implicit return (note, expressions omit semicolon)
+
+## SCOPES
+
+- Defined in a curly block, using {}
+  More on this later!
