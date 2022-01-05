@@ -34,6 +34,9 @@
     - Type declaration: `let a: [i32; 5]`
     - Can initialize all values directly if known: `let a = [3; 5];` (sets 5 values to 3)
     - Accessed via index
+- Strings
+  - Heap type `String`, dynamic heap type, size unknown
+  - `str` immutable sequence of UTF-8 somewhere in memory
 
 ## Functions
 
@@ -51,3 +54,7 @@
 
 - `&someStr[0..2];` - can omit first or last for start/end
 - String literals are slices!! They point to specific point of binary. Hence why they're immutable
+
+## Error handling
+
+- Can use `dbg!(value)` macro to print values (must derive `Debug` trait)
