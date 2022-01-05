@@ -27,6 +27,7 @@
     - Define as: `let tup: (i32, f64, u8) = (500, 6.4, 1);`
     - Can destructure like so: `let (x, y, z) = tup;`
     - Can access via index, e.g. `tup.2`
+    - Empty tuple (`()`) is the _unit type_. Is actually the implicit return for expressions with no return value
   - Array - fixed length list. Must all be same type
     - Define as: `let a = [1, 2, 3, 4, 5];`
     - Data stored on stack

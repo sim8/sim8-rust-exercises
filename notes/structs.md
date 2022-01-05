@@ -26,3 +26,4 @@ let mut user1 = User {
   - 2 dots, not 3
   - Ownership rules apply - fields are either copied or moved over according to datatype rules, that struct may no longer be valid
   - Only uses values not already specified
+- Tuple struct - basically a named tuple, e.g. ` struct Color(i32, i32, i32);`
