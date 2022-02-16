@@ -35,7 +35,17 @@ fn render_next_guess_placeholder() {
 }
 
 fn get_result(guess: String, word: &str) -> [LetterResult; WORD_LENGTH] {
-    let result: [LetterResult; WORD_LENGTH] = [LetterResult::Correct; WORD_LENGTH];
+    let mut result: [LetterResult; WORD_LENGTH] = [LetterResult::Wrong; WORD_LENGTH];
+    let guess_uppercase = guess.to_uppercase();
+    for i in 0..WORD_LENGTH {
+        let guessLetter = guess_uppercase.chars().nth(i).unwrap();
+        let wordLetter = word.chars().nth(i).unwrap();
+        if (guessLetter == wordLetter) {
+            result[i] = LetterResult::Correct;
+        } else if (word.contains(guessLetter)) {
+            result[i] = LetterResult::WrongLocation;
+        }
+    }
     return result;
 }
 
