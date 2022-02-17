@@ -1,3 +1,5 @@
+use colorful::Color;
+use colorful::Colorful;
 use std::io;
 
 // TODO
@@ -58,9 +60,15 @@ fn get_result(guess: String, word: &str) -> [LetterResult; WORD_LENGTH] {
 fn print_result(result: [LetterResult; WORD_LENGTH]) {
     for letter_result in result {
         match letter_result {
-            LetterResult::Correct => print!("O"),
-            LetterResult::WrongLocation => print!("o"),
-            LetterResult::Wrong => print!("X"),
+            LetterResult::Correct => {
+                print!("{}", "O".color(Color::DarkBlue).bg_color(Color::Green))
+            }
+            LetterResult::WrongLocation => {
+                print!("{}", "o".color(Color::DarkBlue).bg_color(Color::Orange3))
+            }
+            LetterResult::Wrong => {
+                print!("{}", "X".color(Color::DarkBlue).bg_color(Color::DarkGray))
+            }
         }
     }
 }
