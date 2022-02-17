@@ -2,6 +2,7 @@ use std::io;
 
 // TODO
 // - use constant for get_result length. usize?
+// validate input (length, chars)
 
 #[derive(Copy, Clone)]
 enum LetterResult {
@@ -10,6 +11,7 @@ enum LetterResult {
     Wrong,
 }
 
+const MAX_GUESSES: usize = 6;
 const WORD_LENGTH: usize = 5;
 
 fn main() {
@@ -20,14 +22,18 @@ fn main() {
     println!("==============");
     println!("");
     println!("Welcome to Wordle. Please type a 5 letter word and hit enter.");
-    render_next_guess_placeholder();
 
-    let guess = enter_guess();
-    println!("You guessed: {}", guess);
-
-    let result = get_result(guess, word);
-    print_result(result);
-    println!("");
+    for i in 0..MAX_GUESSES {
+        render_next_guess_placeholder();
+        let guess = enter_guess();
+        println!("You guessed: {}", guess);
+        let result = get_result(guess, word);
+        print_result(result);
+        println!("");
+        if result.iter().all(|&i| matches!(i, LetterResult::Correct)) {
+            break;
+        }
+    }
 }
 
 fn render_next_guess_placeholder() {
@@ -40,9 +46,9 @@ fn get_result(guess: String, word: &str) -> [LetterResult; WORD_LENGTH] {
     for i in 0..WORD_LENGTH {
         let guessLetter = guess_uppercase.chars().nth(i).unwrap();
         let wordLetter = word.chars().nth(i).unwrap();
-        if (guessLetter == wordLetter) {
+        if guessLetter == wordLetter {
             result[i] = LetterResult::Correct;
-        } else if (word.contains(guessLetter)) {
+        } else if word.contains(guessLetter) {
             result[i] = LetterResult::WrongLocation;
         }
     }
