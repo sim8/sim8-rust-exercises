@@ -44,11 +44,11 @@ fn get_result(guess: String, word: &str) -> [LetterResult; WORD_LENGTH] {
     let mut result: [LetterResult; WORD_LENGTH] = [LetterResult::Wrong; WORD_LENGTH];
     let guess_uppercase = guess.to_uppercase();
     for i in 0..WORD_LENGTH {
-        let guessLetter = guess_uppercase.chars().nth(i).unwrap();
-        let wordLetter = word.chars().nth(i).unwrap();
-        if guessLetter == wordLetter {
+        let guess_letter = guess_uppercase.chars().nth(i).unwrap();
+        let word_letter = word.chars().nth(i).unwrap();
+        if guess_letter == word_letter {
             result[i] = LetterResult::Correct;
-        } else if word.contains(guessLetter) {
+        } else if word.contains(guess_letter) {
             result[i] = LetterResult::WrongLocation;
         }
     }
