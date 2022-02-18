@@ -53,6 +53,8 @@ fn render_screen(guess_results: &Vec<GuessResult>) {
     println!("");
     println!("Welcome to Wordle. Please type a 5 letter word and hit enter.");
     println!("");
+    println!("Guess {}/{}", guess_results.len() + 1, MAX_GUESSES);
+    println!("");
 
     for guess_result in guess_results {
         print_result(guess_result);
