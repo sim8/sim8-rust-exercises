@@ -13,30 +13,51 @@ enum LetterResult {
     Wrong,
 }
 
+struct GuessResult {
+    guess: String,
+    result: [LetterResult; WORD_LENGTH],
+}
+
 const MAX_GUESSES: usize = 6;
 const WORD_LENGTH: usize = 5;
 
 fn main() {
     let word = "CANAL";
+
+    let mut guess_results: Vec<GuessResult> = Vec::new();
+
+    for _ in 0..MAX_GUESSES {
+        render_screen(&guess_results);
+
+        let guess = enter_guess();
+        let result = get_result(&guess, word);
+        let guess_result = GuessResult { guess, result };
+        guess_results.push(guess_result);
+        if result.iter().all(|&i| matches!(i, LetterResult::Correct)) {
+            println!("Woohoo!");
+            break;
+        }
+    }
+}
+
+fn render_screen(guess_results: &Vec<GuessResult>) {
+    // clear screen
+    print!("{}[2J", 27 as char);
+
     println!("");
     println!("==============");
     println!("----WORDLE----");
     println!("==============");
     println!("");
     println!("Welcome to Wordle. Please type a 5 letter word and hit enter.");
+    println!("");
 
-    for _ in 0..MAX_GUESSES {
-        let guess = enter_guess();
-        let result = get_result(guess, word);
-        print_result(result);
-        println!("");
-        if result.iter().all(|&i| matches!(i, LetterResult::Correct)) {
-            break;
-        }
+    for guess_result in guess_results {
+        print_result(guess_result);
     }
 }
 
-fn get_result(guess: String, word: &str) -> [LetterResult; WORD_LENGTH] {
+fn get_result(guess: &String, word: &str) -> [LetterResult; WORD_LENGTH] {
     let mut result: [LetterResult; WORD_LENGTH] = [LetterResult::Wrong; WORD_LENGTH];
     let guess_uppercase = guess.to_uppercase();
     for i in 0..WORD_LENGTH {
@@ -51,20 +72,35 @@ fn get_result(guess: String, word: &str) -> [LetterResult; WORD_LENGTH] {
     return result;
 }
 
-fn print_result(result: [LetterResult; WORD_LENGTH]) {
-    for letter_result in result {
-        match letter_result {
+fn print_result(guess_result: &GuessResult) {
+    for i in 0..WORD_LENGTH {
+        let guess_char_str = &guess_result.guess[i..i + 1];
+        match guess_result.result[i] {
             LetterResult::Correct => {
-                print!("{}", "O".color(Color::DarkBlue).bg_color(Color::Green))
+                print!(
+                    "{}",
+                    guess_char_str.color(Color::DarkBlue).bg_color(Color::Green)
+                )
             }
             LetterResult::WrongLocation => {
-                print!("{}", "o".color(Color::DarkBlue).bg_color(Color::Orange3))
+                print!(
+                    "{}",
+                    guess_char_str
+                        .color(Color::DarkBlue)
+                        .bg_color(Color::Orange3)
+                )
             }
             LetterResult::Wrong => {
-                print!("{}", "X".color(Color::DarkBlue).bg_color(Color::DarkGray))
+                print!(
+                    "{}",
+                    guess_char_str
+                        .color(Color::DarkBlue)
+                        .bg_color(Color::DarkGray)
+                )
             }
         }
     }
+    println!("");
 }
 
 fn enter_guess() -> String {
