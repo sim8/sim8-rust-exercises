@@ -25,10 +25,8 @@ fn main() {
     println!("");
     println!("Welcome to Wordle. Please type a 5 letter word and hit enter.");
 
-    for i in 0..MAX_GUESSES {
-        render_next_guess_placeholder();
+    for _ in 0..MAX_GUESSES {
         let guess = enter_guess();
-        println!("You guessed: {}", guess);
         let result = get_result(guess, word);
         print_result(result);
         println!("");
@@ -36,10 +34,6 @@ fn main() {
             break;
         }
     }
-}
-
-fn render_next_guess_placeholder() {
-    println!("[][][][][]")
 }
 
 fn get_result(guess: String, word: &str) -> [LetterResult; WORD_LENGTH] {
