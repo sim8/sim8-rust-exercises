@@ -5,6 +5,8 @@ use std::io;
 // TODO
 // - use constant for get_result length. usize?
 // validate input (length, chars)
+// random word
+// block fake words?
 
 #[derive(Copy, Clone)]
 enum LetterResult {
@@ -74,7 +76,8 @@ fn get_result(guess: &String, word: &str) -> [LetterResult; WORD_LENGTH] {
 
 fn print_result(guess_result: &GuessResult) {
     for i in 0..WORD_LENGTH {
-        let guess_char_str = &guess_result.guess[i..i + 1];
+        let guess_upper = guess_result.guess.to_uppercase();
+        let guess_char_str = &guess_upper[i..i + 1];
         match guess_result.result[i] {
             LetterResult::Correct => {
                 print!(
@@ -95,7 +98,7 @@ fn print_result(guess_result: &GuessResult) {
                     "{}",
                     guess_char_str
                         .color(Color::DarkBlue)
-                        .bg_color(Color::DarkGray)
+                        .bg_color(Color::Grey42)
                 )
             }
         }
