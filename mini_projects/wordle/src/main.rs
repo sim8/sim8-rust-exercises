@@ -7,6 +7,7 @@ use std::io;
 // validate input (length, chars)
 // random word
 // block fake words?
+// use &str instead of String for guess?
 
 #[derive(Copy, Clone)]
 enum LetterResult {
@@ -109,9 +110,20 @@ fn print_result(guess_result: &GuessResult) {
 }
 
 fn enter_guess() -> String {
-    let mut guess = String::new();
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read guess");
+    let guess = loop {
+        println!("looping");
+        let mut guess = String::new();
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read guess");
+        guess = guess.trim().to_string();
+        println!("{}", guess.chars().count());
+        if guess.chars().count() == WORD_LENGTH {
+            break guess;
+        } else {
+            println!("Guess must be {} letters long!", WORD_LENGTH);
+        }
+    };
+    println!("{}", guess);
     return guess;
 }
