@@ -111,7 +111,6 @@ fn print_result(guess_result: &GuessResult) {
 
 fn enter_guess() -> String {
     let guess = loop {
-        println!("looping");
         let mut guess = String::new();
         io::stdin()
             .read_line(&mut guess)
