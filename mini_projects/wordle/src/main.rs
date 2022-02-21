@@ -37,10 +37,19 @@ fn main() {
         let guess_result = GuessResult { guess, result };
         guess_results.push(guess_result);
         if result.iter().all(|&i| matches!(i, LetterResult::Correct)) {
-            println!("Woohoo!");
+            render_screen(&guess_results);
+            render_success_state(guess_results.len());
             break;
         }
     }
+}
+
+fn render_success_state(total_guesses: usize) {
+    println!("");
+    println!(
+        "Nice work! You guessed the word with {} guesses remaining.",
+        MAX_GUESSES - total_guesses
+    );
 }
 
 fn render_screen(guess_results: &Vec<GuessResult>) {
@@ -116,7 +125,6 @@ fn enter_guess() -> String {
             .read_line(&mut guess)
             .expect("Failed to read guess");
         guess = guess.trim().to_string();
-        println!("{}", guess.chars().count());
         if guess.chars().count() == WORD_LENGTH {
             break guess;
         } else {
