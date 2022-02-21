@@ -57,3 +57,4 @@ impl Rectangle {
 - self is shorthand for `self: &Self`, where `self` is an alias for type stated in `impl` block
 - Methods can have same name as fields
 - Anything without `&self` is not a method. Common uses here are contructors, e.g. `String::from`
+

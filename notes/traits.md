@@ -2,6 +2,8 @@
 
 ## Derived traits
 
+### Debug
+
 ```rust
 #[derive(Debug)]
 struct Rectangle {
@@ -20,3 +22,7 @@ fn main() {
 }
 
 ```
+
+### Copy
+- Only available for stack types
+- Not available it type already derives `drop`
