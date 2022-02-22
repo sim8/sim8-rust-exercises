@@ -92,9 +92,8 @@ fn print_result(guess_result: &GuessResult) {
         let guess_char_str = &guess_upper[i..i + 1];
         let (color, background_color) = match guess_result.result[i] {
             LetterResult::Correct => (Color::DarkBlue, Color::Green),
-            // LetterResult::WrongLocation => (Color::DarkBlue, Color::Orange3),
+            LetterResult::WrongLocation => (Color::DarkBlue, Color::Orange3),
             LetterResult::Wrong => (Color::DarkBlue, Color::Grey42),
-            dang => (Color::Yellow, Color::Yellow),
         };
         print!("{}", guess_char_str.color(color).bg_color(background_color))
     }
