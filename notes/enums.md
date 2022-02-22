@@ -13,3 +13,9 @@ let home = IpAddr::V4(String::from("127.0.0.1"));
 // Passing a string to initialize object
 let loopback = IpAddr::V6(String::from("::1"));
 ```
+
+## Match
+
+- Use any var as a catch-all, e.g. `other`
+- Use `_` as the pattern match if you don't want to use the value
+- Return the _unit type_ (`()`) if you don't want to execute anything
