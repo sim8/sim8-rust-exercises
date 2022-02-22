@@ -19,3 +19,12 @@ let loopback = IpAddr::V6(String::from("::1"));
 - Use any var as a catch-all, e.g. `other`
 - Use `_` as the pattern match if you don't want to use the value
 - Return the _unit type_ (`()`) if you don't want to execute anything
+
+## `if let`
+
+- Syntactic sugar for match where you only want to execute for one match
+```rust
+if let SomeEnum::enumVal(_) = someVar {
+    println!("The maximum is configured to be {}", "max");
+}
+```
