@@ -90,7 +90,7 @@ fn print_result(guess_result: &GuessResult) {
     for i in 0..WORD_LENGTH {
         let guess_upper = guess_result.guess.to_uppercase();
         let guess_char_str = &guess_upper[i..i + 1];
-        let (color, background_color): (Color, Color) = match guess_result.result[i] {
+        let (color, background_color) = match guess_result.result[i] {
             LetterResult::Correct => (Color::DarkBlue, Color::Green),
             LetterResult::WrongLocation => (Color::DarkBlue, Color::Orange3),
             LetterResult::Wrong => (Color::DarkBlue, Color::Grey42),
