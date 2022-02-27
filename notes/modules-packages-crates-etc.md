@@ -8,6 +8,15 @@
   - `crate::front_of_house::hosting::add_to_waitlist();` // absolute
   - `front_of_house::hosting::add_to_waitlist();` // relative
     - `super` == `../`
+    - `self` == `./`
 - Add `pub` keyword in front of anything in a module to make it public (usable outside that module)
   - If you define a struct as `pub`, the fields are private unless otherwise specified
   - Not true for an enum ^
+- Bring stuff in with e.g. `use crate::front_of_house::hosting;`
+  - Can use relative paths!
+  - By convention, bring in the parent module of whatever you want to use for functions
+  - By convention, bring in the exact thing for structs + enums
+  - Use `as` to rename imports
+  - Can re-export stuff with `pub use`. Handy for libs
+  - Bring in multiple things from a thing with `use std::{cmp::Ordering, io};`
+  - glob operator is a thing to import everything
