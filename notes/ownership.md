@@ -24,3 +24,16 @@ Above has some special implications:
   - Items can have variable sizes. At time of creation, a space of a specified size is requested from memory allocator, pointer is returned
   - Requesting is done automatically, e.g. `String::from` (works similarly in most langs)
 - When copy a point (e.g. `str1 = str2`), you are copying the info held in the stack (address, length, capacity).
+
+## Gotchas
+
+```rust
+    let mut v = vec![1, 2, 3, 4, 5];
+
+    let first = &v[0];
+
+    v.push(6);
+    println!("{}", first);
+    // cannot borrow `v` as mutable because it is also borrowed as immutable
+    // immutable reference invalid once modified list (location in heap may've changed)
+```
