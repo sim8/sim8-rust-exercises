@@ -4,6 +4,8 @@
 - Type ascription?
 - Macros?
 - How do you have multiple crates in a package?
+- Dereferencing?
+- Difference between std and core library
 
 
 ```
